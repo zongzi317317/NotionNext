@@ -440,7 +440,7 @@ function NoticePanel({ latestPosts }) {
   return (
     <div
       id='hero-right-wrapper'
-      className='hidden md:flex flex-1 w-full flex-col xl:h-[342px] rounded-xl border dark:border-gray-700 bg-[var(--heo-color-card)] dark:bg-[var(--heo-color-card-dark)] dark:text-white p-6 overflow-hidden'>
+      className='hidden xl:flex flex-1 w-full flex-col xl:h-[342px] rounded-xl border dark:border-gray-700 bg-[var(--heo-color-card)] dark:bg-[var(--heo-color-card-dark)] dark:text-white p-6 overflow-hidden'>
       <div className='flex items-center font-bold text-lg mb-3'>
         <i className='fas fa-bullhorn mr-2 text-[var(--heo-color-primary)] dark:text-[var(--heo-color-accent)]' />
         {locale.COMMON.ANNOUNCEMENT || '公告'}
