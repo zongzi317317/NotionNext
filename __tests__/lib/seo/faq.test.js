@@ -38,7 +38,7 @@ describe('extractFaqFromPost', () => {
     expect(extractFaqFromPost(post)).toEqual([
       {
         question: '肉毒和填充劑是同一種療程嗎？',
-        answer: '不是。 兩者的目的不同。'
+        answer: '不是。兩者的目的不同。'
       },
       { question: '肉毒的效果是永久的嗎？', answer: '不是永久的。' }
     ])
@@ -50,6 +50,7 @@ describe('extractFaqFromPost', () => {
       [null, 'text', 'Q1：費用大概多少？'],
       [null, 'text', '以活動價為例：'],
       [null, 'bulleted_list', '熱瑪吉約 1,290,000 韓元'],
+      [null, 'text', '另加 10% 增值稅。[1]'],
       [null, 'text', 'Q2：看診時有中文翻譯嗎？'],
       [null, 'text', '有。'],
       [null, 'header', '參考資料'],
@@ -59,7 +60,7 @@ describe('extractFaqFromPost', () => {
     expect(extractFaqFromPost(post)).toEqual([
       {
         question: '費用大概多少？',
-        answer: '以活動價為例： 熱瑪吉約 1,290,000 韓元'
+        answer: '以活動價為例：熱瑪吉約 1,290,000 韓元；另加 10% 增值稅。'
       },
       { question: '看診時有中文翻譯嗎？', answer: '有。' }
     ])

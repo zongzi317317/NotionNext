@@ -401,7 +401,10 @@ export const generateBreadcrumbData = (meta, siteInfo, url, siteUrl) => {
   if (meta?.category) {
     items.push({
       name: meta.category,
-      item: createSiteUrl(siteUrl, `category/${meta.category}`)
+      item: createSiteUrl(
+        siteUrl,
+        `category/${encodeURIComponent(meta.category)}`
+      )
     })
   }
   items.push({ name: meta?.headline || meta?.title, item: url })
