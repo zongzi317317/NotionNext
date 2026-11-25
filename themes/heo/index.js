@@ -67,7 +67,7 @@ const LayoutBase = props => {
       {/* 通知横幅 */}
       {router.route === '/' ? (
         <>
-          <NoticeBar />
+          {!siteConfig('HEO_HERO_NOTICE_PANEL', false, CONFIG) && <NoticeBar />}
           <Hero {...props} />
         </>
       ) : null}
@@ -142,7 +142,7 @@ const LayoutIndex = props => {
   return (
     <div id='post-outer-wrapper' className='px-5 md:px-0'>
       {/* 文章分类条 */}
-      <CategoryBar {...props} />
+      {siteConfig('HEO_CATEGORY_BAR', true, CONFIG) && <CategoryBar {...props} />}
       {siteConfig('POST_LIST_STYLE') === 'page' ? (
         <BlogPostListPage {...props} />
       ) : (
@@ -161,7 +161,7 @@ const LayoutPostList = props => {
   return (
     <div id='post-outer-wrapper' className='px-5  md:px-0'>
       {/* 文章分类条 */}
-      <CategoryBar {...props} />
+      {siteConfig('HEO_CATEGORY_BAR', true, CONFIG) && <CategoryBar {...props} />}
       {siteConfig('POST_LIST_STYLE') === 'page' ? (
         <BlogPostListPage {...props} />
       ) : (
@@ -229,7 +229,7 @@ const LayoutArchive = props => {
   return (
     <div className='p-5 rounded-xl border dark:border-gray-600 max-w-6xl w-full bg-[var(--heo-color-card)] dark:bg-[var(--heo-color-card-dark)]'>
       {/* 文章分类条 */}
-      <CategoryBar {...props} border={false} />
+      {siteConfig('HEO_CATEGORY_BAR', true, CONFIG) && <CategoryBar {...props} border={false} />}
 
       <div className='px-3'>
         {Object.keys(archivePosts).map(archiveTitle => (

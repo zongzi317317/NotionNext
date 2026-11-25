@@ -3,10 +3,8 @@ import { isBrowser } from '@/lib/utils'
 import throttle from 'lodash.throttle'
 import { useRouter } from 'next/router'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import DarkModeButton from './DarkModeButton'
 import Logo from './Logo'
 import { MenuListTop } from './MenuListTop'
-import RandomPostButton from './RandomPostButton'
 import ReadingProgress from './ReadingProgress'
 import SearchButton from './SearchButton'
 import SlideOver from './SlideOver'
@@ -179,13 +177,7 @@ const Header = props => {
 
           {/* 右侧固定 */}
           <div className='flex flex-shrink-0 justify-end items-center w-48'>
-            <RandomPostButton {...props} />
             <SearchButton {...props} />
-            {!JSON.parse(siteConfig('THEME_SWITCH')) && (
-              <div className='hidden md:block'>
-                <DarkModeButton {...props} />
-              </div>
-            )}
             <ReadingProgress />
 
             {/* 移动端菜单按钮 */}
