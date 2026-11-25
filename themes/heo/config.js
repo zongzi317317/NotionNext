@@ -24,7 +24,7 @@ const CONFIG = {
 
   // 首页顶部通知条滚动内容，如不需要可以留空 []
   HEO_NOTICE_BAR: [
-    { title: '欢迎来到 KR Clinic Daily', url: '/' },
+    { title: '欢迎来到 Korea Clinic Daily', url: '/' },
     { title: '韩国诊所攻略持续更新中', url: '/archive' }
   ],
   HEO_NOTICE_BAR_INTERVAL: 3000, // 多条通知的切换间隔，单位毫秒；非正数或无效值回退为 3000
