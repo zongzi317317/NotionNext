@@ -67,7 +67,7 @@ const BlogPostListScroll = ({
       <div id='container' ref={targetRef} className='w-full'>
         {/* 文章列表 */}
         <div
-          className={`${POST_TWO_COLS && '2xl:grid 2xl:grid-cols-2'} grid-cols-1 gap-5`}>
+          className={`${POST_TWO_COLS && `2xl:grid ${Number(siteConfig('HEO_HOME_POST_COLS', 2, CONFIG)) === 3 ? '2xl:grid-cols-3' : '2xl:grid-cols-2'}`} grid-cols-1 gap-5`}>
           {' '}
           {postsToShow.map(post => (
             <BlogPostCard

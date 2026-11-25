@@ -189,7 +189,8 @@ function GroupMenu() {
       </SmartLink>
       <SmartLink
         href={url_2}
-        className='group relative overflow-hidden bg-gradient-to-r from-red-500 to-yellow-500 flex h-20 justify-start items-center text-white rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
+        style={{ backgroundImage: 'linear-gradient(to right, #ef4444, #f59e0b)' }}
+        className='group relative overflow-hidden flex h-20 justify-start items-center text-white rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
         <div className='font-bold lg:text-lg pl-5 relative -mt-2'>
           {title_2}
           <span className='absolute -bottom-0.5 left-5 w-5 h-0.5 bg-white rounded-full'></span>
@@ -201,7 +202,8 @@ function GroupMenu() {
       {/* 第三个标签在小屏上不显示 */}
       <SmartLink
         href={url_3}
-        className='group relative overflow-hidden bg-gradient-to-r from-teal-300 to-cyan-300 hidden h-20 xl:flex justify-start items-center text-white rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
+        style={{ backgroundImage: 'linear-gradient(to right, #14b8a6, #06b6d4)' }}
+        className='group relative overflow-hidden hidden h-20 xl:flex justify-start items-center text-white rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
         <div className='font-bold text-lg pl-5 relative -mt-2'>
           {title_3}
           <span className='absolute -bottom-0.5 left-5 w-5 h-0.5 bg-white rounded-full'></span>
@@ -440,7 +442,7 @@ function NoticePanel({ latestPosts }) {
   return (
     <div
       id='hero-right-wrapper'
-      className='hidden md:flex flex-1 w-full flex-col xl:h-[342px] rounded-xl border dark:border-gray-700 bg-[var(--heo-color-card)] dark:bg-[var(--heo-color-card-dark)] dark:text-white p-6 overflow-hidden'>
+      className='hidden xl:flex flex-1 w-full flex-col xl:h-[342px] rounded-xl border dark:border-gray-700 bg-[var(--heo-color-card)] dark:bg-[var(--heo-color-card-dark)] dark:text-white p-6 overflow-hidden'>
       <div className='flex items-center font-bold text-lg mb-3'>
         <i className='fas fa-bullhorn mr-2 text-[var(--heo-color-primary)] dark:text-[var(--heo-color-accent)]' />
         {locale.COMMON.ANNOUNCEMENT || '公告'}
