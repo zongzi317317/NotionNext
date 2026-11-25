@@ -8,21 +8,41 @@ import {
   normalizeSitemapLocale,
   toSitemapDateString
 } from '@/lib/sitemap-utils'
+import {
+  getAllContentLocales,
+  getLocalePrefix,
+  isContentLocalesEnabled
+} from '@/lib/utils/contentLocale'
 import { extractLangId, extractLangPrefix } from '@/lib/utils/pageId'
 import { getServerSideSitemap } from 'next-sitemap'
 
 export const getServerSideProps = async ctx => {
   let fields = []
   const siteIds = BLOG.NOTION_PAGE_ID.split(',')
+  // 每个条目：{ id: Notion 数据库, fetchLocale: 取数据用的语言, locale: 网址前缀 }
+  const sources = siteIds.map(siteId => ({
+    id: extractLangId(siteId),
+    fetchLocale: undefined,
+    locale: extractLangPrefix(siteId)
+  }))
+  // 同库多语言（conf/i18n.config.js）：同一个数据库按语言各生成一份
+  if (isContentLocalesEnabled() && siteIds.length === 1) {
+    sources.length = 0
+    getAllContentLocales().forEach(lang => {
+      sources.push({
+        id: extractLangId(siteIds[0]),
+        fetchLocale: lang,
+        locale: getLocalePrefix(lang)
+      })
+    })
+  }
 
-  for (let index = 0; index < siteIds.length; index++) {
-    const siteId = siteIds[index]
-    const id = extractLangId(siteId)
-    const locale = extractLangPrefix(siteId)
+  for (const { id, fetchLocale, locale } of sources) {
     // 第一个id站点默认语言
     const siteData = await fetchGlobalAllData({
       pageId: id,
-      from: 'sitemap.xml'
+      from: 'sitemap.xml',
+      locale: fetchLocale
     })
     const link = siteConfig(
       'LINK',
@@ -105,7 +125,10 @@ function generateLocalesSitemap(link, allPages, locale) {
       changefreq: 'daily',
       priority: '0.7'
     }
-  ].filter(field => Boolean(field?.loc))
+  ]
+    // RSS 只为默认语言生成，其他语言不收录 feed 地址
+    .filter(field => !(normalizedLocale && field?.loc?.endsWith('/rss/feed.xml')))
+    .filter(field => Boolean(field?.loc))
 
   const postFields =
     allPages

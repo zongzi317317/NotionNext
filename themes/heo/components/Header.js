@@ -7,6 +7,7 @@ import Logo from './Logo'
 import { MenuListTop } from './MenuListTop'
 import ReadingProgress from './ReadingProgress'
 import SearchButton from './SearchButton'
+import LangSwitch from '@/components/LangSwitch'
 import SlideOver from './SlideOver'
 
 /**
@@ -177,6 +178,7 @@ const Header = props => {
 
           {/* 右侧固定 */}
           <div className='flex flex-shrink-0 justify-end items-center w-48'>
+            <LangSwitch localePaths={props?.localePaths} />
             <SearchButton {...props} />
             <ReadingProgress />
 
