@@ -99,36 +99,13 @@ function generateLocalesSitemap(link, allPages, locale) {
       loc: buildSitemapLoc({
         baseUrl: normalizedLink,
         locale: normalizedLocale,
-        slug: 'rss/feed.xml'
-      }),
-      lastmod: dateNow,
-      changefreq: 'daily',
-      priority: '0.7'
-    },
-    {
-      loc: buildSitemapLoc({
-        baseUrl: normalizedLink,
-        locale: normalizedLocale,
-        slug: 'search'
-      }),
-      lastmod: dateNow,
-      changefreq: 'daily',
-      priority: '0.7'
-    },
-    {
-      loc: buildSitemapLoc({
-        baseUrl: normalizedLink,
-        locale: normalizedLocale,
         slug: 'tag'
       }),
       lastmod: dateNow,
       changefreq: 'daily',
       priority: '0.7'
     }
-  ]
-    // RSS 只为默认语言生成，其他语言不收录 feed 地址
-    .filter(field => !(normalizedLocale && field?.loc?.endsWith('/rss/feed.xml')))
-    .filter(field => Boolean(field?.loc))
+  ].filter(field => Boolean(field?.loc))
 
   const postFields =
     allPages
@@ -145,7 +122,10 @@ function generateLocalesSitemap(link, allPages, locale) {
 
         return {
           loc,
-          lastmod: toSitemapDateString(post?.publishDay, dateNow),
+          lastmod: toSitemapDateString(
+            post?.lastEditedDate || post?.publishDate || post?.publishDay,
+            dateNow
+          ),
           changefreq: 'daily',
           priority: '0.7'
         }

@@ -1,6 +1,7 @@
 import { siteConfig } from '@/lib/config'
 import { useGlobal } from '@/lib/global'
 import { getPwaConfig } from '@/lib/pwa'
+import { buildFaqStructuredData, extractFaqFromPost } from '@/lib/seo/faq'
 import { createSiteUrl, normalizeSiteUrl } from '@/lib/sitemap-utils'
 import { isHttpLink, loadExternalResource } from '@/lib/utils'
 import {
@@ -167,6 +168,18 @@ const SEO = props => {
       }
     }
   }
+  const structuredData = [
+    generateStructuredData(meta, siteInfo, url, image, AUTHOR, LINK, {
+      language,
+      authorUrl: createSiteUrl(localeLink, siteConfig('AUTHOR_URL_PATH', 'about')),
+      searchUrlTemplate: createSiteUrl(localeLink, 'search/{search_term_string}')
+    })
+  ]
+  if (meta?.type === 'Post') {
+    structuredData.push(generateBreadcrumbData(meta, siteInfo, url, localeLink))
+    const faqData = buildFaqStructuredData(extractFaqFromPost(post), url)
+    if (faqData) structuredData.push(faqData)
+  }
   return (
     <Head>
       <link rel='icon' href={favicon} />
@@ -235,8 +248,14 @@ const SEO = props => {
 
       {/* 语言和地区 */}
       <meta httpEquiv='content-language' content={language} />
-      <meta name='geo.region' content={siteConfig('GEO_REGION', 'CN')} />
-      <meta name='geo.country' content={siteConfig('GEO_COUNTRY', 'CN')} />
+      <meta
+        name='geo.region'
+        content={siteConfig('GEO_REGION', 'CN', NOTION_CONFIG)}
+      />
+      <meta
+        name='geo.country'
+        content={siteConfig('GEO_COUNTRY', 'CN', NOTION_CONFIG)}
+      />
       {/* Open Graph 元数据 */}
       <meta property='og:locale' content={lang} />
       <meta property='og:title' content={title} />
@@ -303,14 +322,15 @@ const SEO = props => {
       )}
 
       {/* 结构化数据 */}
-      <script
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            generateStructuredData(meta, siteInfo, url, image, AUTHOR, LINK)
-          )
-        }}
-      />
+      {structuredData.map((data, index) => (
+        <script
+          key={`ld-json-${index}`}
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(data).replace(/</g, '\\u003c')
+          }}
+        />
+      ))}
 
       {/* DNS预取和预连接 */}
       {hasGoogleFontsUrl && (
@@ -346,18 +366,35 @@ export const generateStructuredData = (
   url,
   image,
   author,
-  siteUrl
+  siteUrl,
+  options = {}
 ) => {
+  const { language, authorUrl, searchUrlTemplate } = options
+  const authorData = {
+    '@type': 'Person',
+    name: author,
+    ...(authorUrl ? { url: authorUrl } : {})
+  }
   const baseData = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: siteInfo?.title,
     description: siteInfo?.description,
     url: siteUrl,
-    author: {
-      '@type': 'Person',
-      name: author
-    },
+    ...(language ? { inLanguage: language } : {}),
+    ...(searchUrlTemplate
+      ? {
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: {
+              '@type': 'EntryPoint',
+              urlTemplate: searchUrlTemplate
+            },
+            'query-input': 'required name=search_term_string'
+          }
+        }
+      : {}),
+    author: authorData,
     publisher: {
       '@type': 'Organization',
       name: siteInfo?.title,
@@ -373,16 +410,14 @@ export const generateStructuredData = (
     return {
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
-      headline: meta.title,
+      headline: meta.headline || meta.title,
       description: meta.description,
       image: image,
       url: url,
       datePublished: meta.publishTime,
       dateModified: meta.modifiedTime || meta.publishTime,
-      author: {
-        '@type': 'Person',
-        name: author
-      },
+      ...(language ? { inLanguage: language } : {}),
+      author: authorData,
       publisher: {
         '@type': 'Organization',
         name: siteInfo?.title,
@@ -401,6 +436,34 @@ export const generateStructuredData = (
   }
 
   return baseData
+}
+
+/**
+ * 文章页的面包屑结构化数据：首页 > 分类 > 文章
+ */
+export const generateBreadcrumbData = (meta, siteInfo, url, siteUrl) => {
+  const items = [{ name: siteInfo?.title, item: siteUrl }]
+  if (meta?.category) {
+    items.push({
+      name: meta.category,
+      item: createSiteUrl(
+        siteUrl,
+        `category/${encodeURIComponent(meta.category)}`
+      )
+    })
+  }
+  items.push({ name: meta?.headline || meta?.title, item: url })
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((entry, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: entry.name,
+      item: entry.item
+    }))
+  }
 }
 
 const containsGoogleFontsUrl = fontUrl => {
@@ -542,6 +605,7 @@ const getSEOMeta = (props, router, locale) => {
         title: post
           ? `${post?.title} | ${siteInfo?.title}`
           : `${siteInfo?.title} | loading`,
+        headline: post?.title,
         description: post?.summary,
         type: post?.type,
         slug: post?.slug,

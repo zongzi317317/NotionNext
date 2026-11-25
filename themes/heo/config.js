@@ -28,7 +28,9 @@ const CONFIG = {
   // 版面开关
   HEO_HERO_NOTICE_PANEL: true, // 公告条改放在英雄区右侧面板（不再显示在英雄区上方）
   HEO_CATEGORY_BAR: false, // 文章列表上方的分类栏
-  HEO_INFO_CARD_SIDEBAR: false, // 右侧栏个人资料卡
+  HEO_INFO_CARD_SIDEBAR: false,
+  HEO_HOME_SIDEBAR: false, // 首頁（含分頁）是否顯示右側欄
+  HEO_HOME_POST_COLS: 3, // 寬螢幕首頁文章每排張數（2 或 3） // 右侧栏个人资料卡
 
   HEO_SITE_CREATE_TIME: '2026-11-01', // 建站日期，用于计算网站运行的第几天
 
