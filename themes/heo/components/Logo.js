@@ -12,7 +12,7 @@ const Logo = () => {
   const titleZh = siteConfig('HEO_LOGO_TITLE_2', null, CONFIG)
   return (
     <SmartLink href='/' passHref legacyBehavior>
-      <div className='flex flex-nowrap items-center cursor-pointer min-w-0 flex-shrink'>
+      <div className='flex flex-nowrap items-center cursor-pointer min-w-0 flex-shrink lg:flex-none'>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={logoImg}
