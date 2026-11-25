@@ -434,11 +434,11 @@ const LayoutCategoryIndex = props => {
               legacyBehavior>
               <div
                 className={
-                  'group mr-5 mb-5 flex flex-nowrap items-center border bg-[var(--heo-color-card)] text-2xl rounded-xl dark:hover:text-white px-4 cursor-pointer py-3 hover:text-[var(--heo-color-primary-text)] hover:bg-[var(--heo-color-primary)] transition-all hover:scale-110 duration-150'
+                  'group mr-5 mb-5 flex flex-nowrap items-center border dark:border-gray-700 bg-[var(--heo-color-card)] dark:bg-[var(--heo-color-card-dark)] text-[var(--heo-color-text)] text-2xl rounded-xl dark:hover:text-white px-4 cursor-pointer py-3 hover:text-[var(--heo-color-primary-text)] hover:bg-[var(--heo-color-primary)] transition-all hover:scale-110 duration-150'
                 }>
                 <HashTag className={'w-5 h-5 stroke-gray-500 stroke-2'} />
                 {category.name}
-                <div className='bg-[var(--heo-color-card-muted)] ml-1 px-2 rounded-lg group-hover:text-[var(--heo-color-primary)] '>
+                <div className='bg-[var(--heo-color-card-muted)] dark:bg-gray-700 ml-1 px-2 rounded-lg group-hover:text-[var(--heo-color-primary)] '>
                   {category.count}
                 </div>
               </div>
@@ -476,11 +476,11 @@ const LayoutTagIndex = props => {
               legacyBehavior>
               <div
                 className={
-                  'group flex flex-nowrap items-center border bg-[var(--heo-color-card)] text-2xl rounded-xl dark:hover:text-white px-4 cursor-pointer py-3 hover:text-[var(--heo-color-primary-text)] hover:bg-[var(--heo-color-primary)] transition-all hover:scale-110 duration-150'
+                  'group flex flex-nowrap items-center border dark:border-gray-700 bg-[var(--heo-color-card)] dark:bg-[var(--heo-color-card-dark)] text-[var(--heo-color-text)] text-2xl rounded-xl dark:hover:text-white px-4 cursor-pointer py-3 hover:text-[var(--heo-color-primary-text)] hover:bg-[var(--heo-color-primary)] transition-all hover:scale-110 duration-150'
                 }>
                 <HashTag className={'w-5 h-5 stroke-gray-500 stroke-2'} />
                 {tag.name}
-                <div className='bg-[var(--heo-color-card-muted)] ml-1 px-2 rounded-lg group-hover:text-[var(--heo-color-primary)] '>
+                <div className='bg-[var(--heo-color-card-muted)] dark:bg-gray-700 ml-1 px-2 rounded-lg group-hover:text-[var(--heo-color-primary)] '>
                   {tag.count}
                 </div>
               </div>
