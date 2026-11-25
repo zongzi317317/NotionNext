@@ -364,7 +364,8 @@ const LayoutSlug = props => {
  */
 const Layout404 = props => {
   // const { meta, siteInfo } = props
-  const { onLoading, fullWidth } = useGlobal()
+  const { onLoading, fullWidth, lang } = useGlobal()
+  const isEn = String(lang || '').startsWith('en')
   return (
     <>
       {/* 主区块 */}
@@ -396,10 +397,10 @@ const Layout404 = props => {
                 <h1 className='error-title font-extrabold md:text-9xl text-7xl dark:text-white'>
                   404
                 </h1>
-                <div className='dark:text-white'>请尝试站内搜索寻找文章</div>
+                <div className='dark:text-white'>{isEn ? 'Try searching the site for the article.' : '請嘗試站內搜尋尋找文章'}</div>
                 <SmartLink href='/'>
                   <button className='bg-[var(--heo-color-primary)] py-2 px-4 text-[var(--heo-color-primary-text)] shadow rounded-lg hover:bg-[var(--heo-color-primary-hover)] hover:shadow-md duration-200 transition-all'>
-                    回到主页
+                    {isEn ? 'Back to home' : '回到首頁'}
                   </button>
                 </SmartLink>
               </div>

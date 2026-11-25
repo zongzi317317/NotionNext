@@ -1,5 +1,6 @@
 import CONFIG from '../config'
 import { siteConfig } from '@/lib/config'
+import { useGlobal } from '@/lib/global'
 
 /**
  * 博客统计卡牌
@@ -17,6 +18,8 @@ export function AnalyticsCard(props) {
   const siteVisitorTitle = siteConfig('HEO_SITE_VISITOR_TITLE', null, CONFIG)
 
   const { postCount } = props
+  const { lang } = useGlobal()
+  const dayUnit = String(lang || '').startsWith('en') ? (diffDays === 1 ? ' day' : ' days') : ' 天'
   return <>
         <div className='text-md flex flex-col space-y-1 justify-center px-3'>
             <div className='inline'>
@@ -28,7 +31,7 @@ export function AnalyticsCard(props) {
             <div className='inline'>
                 <div className='flex justify-between'>
                     <div>{siteTimeTitle}</div>
-                    <div>{diffDays} 天</div>
+                    <div>{diffDays}{dayUnit}</div>
                 </div>
             </div>
             <div className='hidden busuanzi_container_site_pv'>

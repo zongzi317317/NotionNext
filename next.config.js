@@ -28,6 +28,13 @@ const locales = (function () {
         }
       }
     }
+  } else if (Array.isArray(BLOG.CONTENT_LOCALES)) {
+    // 同库多语言（conf/i18n.config.js）：例如 en 页面出现在 /en/ 下
+    for (const lang of BLOG.CONTENT_LOCALES) {
+      if (lang && !langs.includes(lang)) {
+        langs.push(lang)
+      }
+    }
   }
   return langs
 })()
@@ -222,7 +229,9 @@ const nextConfig = {
     : {
       defaultLocale: BLOG.LANG,
       // 支持的所有多语言,按需填写即可
-      locales: locales
+      locales: locales,
+      // 不根据浏览器语言自动跳转，访客由语言切换按钮自行选择
+      localeDetection: false
     },
   images: {
     // 图片压缩和格式优化

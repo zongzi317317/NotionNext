@@ -4,6 +4,12 @@ import { getPwaConfig } from '@/lib/pwa'
 import { buildFaqStructuredData, extractFaqFromPost } from '@/lib/seo/faq'
 import { createSiteUrl, normalizeSiteUrl } from '@/lib/sitemap-utils'
 import { isHttpLink, loadExternalResource } from '@/lib/utils'
+import {
+  getLocaleAlternates,
+  getLocalePrefix,
+  isContentLocalesEnabled
+} from '@/lib/utils/contentLocale'
+import BLOG from '@/blog.config'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
@@ -20,9 +26,16 @@ const SEO = props => {
     siteConfig('LINK', siteInfo?.link, NOTION_CONFIG)
   )
   const SUB_PATH = siteConfig('SUB_PATH', '')
-  let url = PATH?.length ? createSiteUrl(LINK, SUB_PATH) || LINK : LINK
-  let image
   const router = useRouter()
+  // 同庫多語言：非預設語言的頁面網址帶 /en 這樣的前綴
+  const contentLocalesEnabled = isContentLocalesEnabled()
+  const localeLink = contentLocalesEnabled
+    ? LINK + getLocalePrefix(router?.locale)
+    : LINK
+  let url = PATH?.length
+    ? createSiteUrl(localeLink, SUB_PATH) || localeLink
+    : localeLink
+  let image
   const meta = getSEOMeta(props, router, useGlobal()?.locale)
   const webFontUrl = siteConfig('FONT_URL')
   const hasWebFontUrl = Array.isArray(webFontUrl)
@@ -132,15 +145,38 @@ const SEO = props => {
   const TWITTER_CREATOR = siteConfig('TWITTER_CREATOR', '', NOTION_CONFIG)
 
   const AUTHOR = siteConfig('AUTHOR')
+
+  // hreflang：只有目前頁面確實存在其他語言版本時才輸出
+  const hreflangLinks = []
+  if (contentLocalesEnabled) {
+    const alternates = getLocaleAlternates(router?.asPath, props?.localePaths)
+    const altLocales = Object.keys(alternates)
+    if (altLocales.length > 1) {
+      altLocales.forEach(loc => {
+        const path = alternates[loc]
+        hreflangLinks.push({
+          hrefLang: loc,
+          href: createSiteUrl(LINK + getLocalePrefix(loc), path === '/' ? '' : encodeURI(path))
+        })
+      })
+      if (alternates[BLOG.LANG]) {
+        const path = alternates[BLOG.LANG]
+        hreflangLinks.push({
+          hrefLang: 'x-default',
+          href: createSiteUrl(LINK, path === '/' ? '' : encodeURI(path))
+        })
+      }
+    }
+  }
   const structuredData = [
     generateStructuredData(meta, siteInfo, url, image, AUTHOR, LINK, {
       language,
-      authorUrl: createSiteUrl(LINK, siteConfig('AUTHOR_URL_PATH', 'about')),
-      searchUrlTemplate: createSiteUrl(LINK, 'search/{search_term_string}')
+      authorUrl: createSiteUrl(localeLink, siteConfig('AUTHOR_URL_PATH', 'about')),
+      searchUrlTemplate: createSiteUrl(localeLink, 'search/{search_term_string}')
     })
   ]
   if (meta?.type === 'Post') {
-    structuredData.push(generateBreadcrumbData(meta, siteInfo, url, LINK))
+    structuredData.push(generateBreadcrumbData(meta, siteInfo, url, localeLink))
     const faqData = buildFaqStructuredData(extractFaqFromPost(post), url)
     if (faqData) structuredData.push(faqData)
   }
@@ -187,6 +223,15 @@ const SEO = props => {
 
       {/* 基础SEO元数据 */}
       <link rel='canonical' href={url} />
+      {/* 多语言对应版本 */}
+      {hreflangLinks.map(item => (
+        <link
+          key={`hreflang-${item.hrefLang}`}
+          rel='alternate'
+          hrefLang={item.hrefLang}
+          href={item.href}
+        />
+      ))}
       {/* RSS 自动发现：浏览器地址栏与阅读器依赖此声明 */}
       {ENABLE_RSS && rssUrl && (
         <link

@@ -12,21 +12,21 @@ const Logo = () => {
   const titleZh = siteConfig('HEO_LOGO_TITLE_2', null, CONFIG)
   return (
     <SmartLink href='/' passHref legacyBehavior>
-      <div className='flex flex-nowrap items-center cursor-pointer flex-none'>
+      <div className='flex flex-nowrap items-center cursor-pointer min-w-0 flex-shrink lg:flex-none'>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={logoImg}
           width={36}
           height={36}
           alt={titleEn}
-          className='w-9 h-9 rounded-lg mr-3'
+          className='w-9 h-9 rounded-lg mr-3 flex-none'
         />
-        <div className='flex flex-col leading-tight'>
-          <span className='font-extrabold text-base tracking-wide'>
+        <div className='flex flex-col leading-tight min-w-0'>
+          <span className='font-extrabold text-base tracking-wide truncate'>
             {titleEn}
           </span>
           {titleZh && (
-            <span className='text-xs tracking-[0.3em] text-[var(--heo-color-accent)]'>
+            <span className='text-xs tracking-[0.1em] sm:tracking-[0.3em] truncate text-[var(--heo-color-accent)]'>
               {titleZh}
             </span>
           )}
