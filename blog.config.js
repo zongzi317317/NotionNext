@@ -19,6 +19,9 @@ const BLOG = {
   AUTHOR: process.env.NEXT_PUBLIC_AUTHOR || 'G.C', // 您的昵称 例如 tangly1024
   BIO: process.env.NEXT_PUBLIC_BIO || '韓國醫美與皮膚科診所資訊', // 作者简介
   LINK: process.env.NEXT_PUBLIC_LINK || 'https://krclinicdaily.com', // 网站地址
+  // SEO 地理标记：内容所在地区为首尔（ISO 3166-2: KR-11）
+  GEO_REGION: process.env.NEXT_PUBLIC_GEO_REGION || 'KR-11',
+  GEO_COUNTRY: process.env.NEXT_PUBLIC_GEO_COUNTRY || 'KR',
   KEYWORDS: process.env.NEXT_PUBLIC_KEYWORD || '韓國診所, 韓國醫美, 韓國皮膚科, 首爾, Korea Clinic, Korea Dermatology', // 网站关键词 英文逗号隔开
   BLOG_FAVICON: process.env.NEXT_PUBLIC_FAVICON || '/favicon.ico', // blog favicon 配置, 默认使用 /public/favicon.ico，支持在线图片，如 https://img.imesong.com/favicon.png
   PWA_ENABLE: process.env.NEXT_PUBLIC_PWA_ENABLE || false, // 是否启用 PWA 安装入口；也可在 Notion_Config 中配置 PWA_ENABLE=true

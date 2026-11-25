@@ -79,26 +79,6 @@ function generateLocalesSitemap(link, allPages, locale) {
       loc: buildSitemapLoc({
         baseUrl: normalizedLink,
         locale: normalizedLocale,
-        slug: 'rss/feed.xml'
-      }),
-      lastmod: dateNow,
-      changefreq: 'daily',
-      priority: '0.7'
-    },
-    {
-      loc: buildSitemapLoc({
-        baseUrl: normalizedLink,
-        locale: normalizedLocale,
-        slug: 'search'
-      }),
-      lastmod: dateNow,
-      changefreq: 'daily',
-      priority: '0.7'
-    },
-    {
-      loc: buildSitemapLoc({
-        baseUrl: normalizedLink,
-        locale: normalizedLocale,
         slug: 'tag'
       }),
       lastmod: dateNow,
@@ -122,7 +102,10 @@ function generateLocalesSitemap(link, allPages, locale) {
 
         return {
           loc,
-          lastmod: toSitemapDateString(post?.publishDay, dateNow),
+          lastmod: toSitemapDateString(
+            post?.lastEditedDate || post?.publishDate || post?.publishDay,
+            dateNow
+          ),
           changefreq: 'daily',
           priority: '0.7'
         }
