@@ -283,6 +283,11 @@ export const initDarkMode = (updateDarkMode, defaultDarkMode) => {
   // 查看用户设备浏览器是否深色模型
   let newDarkMode = isPreferDark()
 
+  // 站点默认深色（APPEARANCE=dark）时先设为深色，访客手动切换的记录仍可覆盖
+  if (defaultDarkMode === 'dark') {
+    newDarkMode = true
+  }
+
   // 查看localStorage中用户记录的是否深色模式
   const userDarkMode = loadDarkModeFromLocalStorage()
   if (userDarkMode) {

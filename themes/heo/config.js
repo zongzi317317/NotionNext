@@ -6,17 +6,17 @@ const CONFIG = {
 
   HEO_INFO_CARD_AVATAR_BLUR: true, // 文章详情页个人资料卡头像样式。true：显示为模糊装饰头像；false：与首页头像保持一致
 
-  HEO_COLOR_PRIMARY: '#4f65f0',
-  HEO_COLOR_PRIMARY_HOVER: '#4f46e5',
+  HEO_COLOR_PRIMARY: '#0ea5e9',
+  HEO_COLOR_PRIMARY_HOVER: '#0284c7',
   HEO_COLOR_PRIMARY_TEXT: '#ffffff',
-  HEO_COLOR_ACCENT: '#dca846',
-  HEO_COLOR_BG: '#f7f9fe',
-  HEO_COLOR_BG_DARK: '#18171d',
+  HEO_COLOR_ACCENT: '#22d3ee',
+  HEO_COLOR_BG: '#f1f5f9',
+  HEO_COLOR_BG_DARK: '#0b1120',
   HEO_COLOR_CARD: '#ffffff',
-  HEO_COLOR_CARD_DARK: '#1e1e1e',
+  HEO_COLOR_CARD_DARK: '#111827',
   HEO_COLOR_CARD_MUTED: '#f1f3f8',
-  HEO_COLOR_BORDER: '#4f46e5',
-  HEO_COLOR_BORDER_DARK: '#dca846',
+  HEO_COLOR_BORDER: '#0284c7',
+  HEO_COLOR_BORDER_DARK: '#38bdf8',
   HEO_COLOR_TEXT: '#111827',
   HEO_COLOR_TEXT_SECONDARY: '#4b5563',
 
@@ -24,8 +24,8 @@ const CONFIG = {
 
   // 首页顶部通知条滚动内容，如不需要可以留空 []
   HEO_NOTICE_BAR: [
-    { title: '欢迎来到 Korea Clinic Daily', url: '/' },
-    { title: '韩国诊所攻略持续更新中', url: '/archive' }
+    { title: '歡迎來到 Korea Clinic Daily', url: '/' },
+    { title: '韓國診所攻略持續更新中', url: '/archive' }
   ],
   HEO_NOTICE_BAR_INTERVAL: 3000, // 多条通知的切换间隔，单位毫秒；非正数或无效值回退为 3000
 
@@ -35,19 +35,19 @@ const CONFIG = {
   HEO_HERO_BODY_REVERSE: false,
 
   // 英雄区(首页顶部大卡)
-  HEO_HERO_TITLE_1: '韩国诊所',
-  HEO_HERO_TITLE_2: '真实攻略与资讯',
+  HEO_HERO_TITLE_1: '韓國診所',
+  HEO_HERO_TITLE_2: '真實攻略與資訊',
   HEO_HERO_TITLE_3: 'KRCLINICDAILY.COM',
   HEO_HERO_TITLE_4: '最新文章',
-  HEO_HERO_TITLE_5: '首尔皮肤科与医美诊所指南',
+  HEO_HERO_TITLE_5: '首爾皮膚科與醫美診所指南',
   HEO_HERO_TITLE_LINK: 'https://krclinicdaily.com',
   // 英雄区遮罩文字
-  HEO_HERO_COVER_TITLE: '随便逛逛',
+  HEO_HERO_COVER_TITLE: '隨便逛逛',
 
   // 英雄区显示三个置顶分类
-  HEO_HERO_CATEGORY_1: { title: '诊所推荐', url: '/tag/诊所推荐' },
-  HEO_HERO_CATEGORY_2: { title: '热门文章', url: '/tag/热门文章' },
-  HEO_HERO_CATEGORY_3: { title: '就诊攻略', url: '/tag/就诊攻略' },
+  HEO_HERO_CATEGORY_1: { title: '診所推薦', url: '/tag/診所推薦' },
+  HEO_HERO_CATEGORY_2: { title: '熱門文章', url: '/tag/熱門文章' },
+  HEO_HERO_CATEGORY_3: { title: '就診攻略', url: '/tag/就診攻略' },
 
   // 英雄区右侧推荐文章标签, 例如 [推荐] , 最多六篇文章; 若留空白''，则推荐最近更新文章
   HEO_HERO_RECOMMEND_POST_TAG: '推荐',
@@ -59,10 +59,10 @@ const CONFIG = {
 
   // 右侧个人资料卡牌欢迎语，点击可自动切换
   HEO_INFOCARD_GREETINGS: [
-    '你好！这里是',
-    '🏥 韩国诊所资讯',
-    '✨ 皮肤科与医美攻略',
-    '🗺️ 首尔就诊指南'
+    '你好！這裡是',
+    '🏥 韓國診所資訊',
+    '✨ 皮膚科與醫美攻略',
+    '🗺️ 首爾就診指南'
   ],
 
   // 个人资料底部按钮
@@ -144,9 +144,9 @@ const CONFIG = {
 
   // 底部统计面板文案
   HEO_POST_COUNT_TITLE: '文章数:',
-  HEO_SITE_TIME_TITLE: '建站天数:',
-  HEO_SITE_VISIT_TITLE: '访问量:',
-  HEO_SITE_VISITOR_TITLE: '访客数:',
+  HEO_SITE_TIME_TITLE: '建站天數:',
+  HEO_SITE_VISIT_TITLE: '訪問量:',
+  HEO_SITE_VISITOR_TITLE: '訪客數:',
 
   // *****  以下配置无效，只是预留开发 ****
   // 菜单配置

@@ -35,17 +35,17 @@ const Style = () => {
   return (
     <style jsx global>{`
       #theme-heo {
-        --heo-color-primary: #4f65f0;
-        --heo-color-primary-hover: #4f46e5;
+        --heo-color-primary: #0ea5e9;
+        --heo-color-primary-hover: #0284c7;
         --heo-color-primary-text: #ffffff;
-        --heo-color-accent: #ca8a04;
+        --heo-color-accent: #22d3ee;
         --heo-color-bg: ${bgColor};
         --heo-color-bg-dark: ${bgDarkColor};
         --heo-color-card: #ffffff;
-        --heo-color-card-dark: #1e1e1e;
+        --heo-color-card-dark: #111827;
         --heo-color-card-muted: #f1f3f8;
-        --heo-color-border: #4f46e5;
-        --heo-color-border-dark: #ca8a04;
+        --heo-color-border: #0284c7;
+        --heo-color-border-dark: #38bdf8;
         --heo-color-text-light: #000000;
         --heo-color-text-secondary-light: #4b5563;
         --heo-color-text-dark: #f3f4f6;
