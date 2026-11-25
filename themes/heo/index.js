@@ -119,12 +119,16 @@ const LayoutBase = props => {
             {children}
           </div>
 
-          <div className='lg:px-2'></div>
+          {slotRight && (
+            <>
+              <div className='lg:px-2'></div>
 
-          <div className='hidden xl:block'>
-            {/* 主区快右侧 */}
-            {slotRight}
-          </div>
+              <div className='hidden xl:block'>
+                {/* 主区快右侧 */}
+                {slotRight}
+              </div>
+            </>
+          )}
         </div>
       </main>
 
