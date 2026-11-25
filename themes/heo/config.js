@@ -20,6 +20,16 @@ const CONFIG = {
   HEO_COLOR_TEXT: '#111827',
   HEO_COLOR_TEXT_SECONDARY: '#4b5563',
 
+  // Logo（左上角）
+  HEO_LOGO_IMG: '/images/logo/icon.svg',
+  HEO_LOGO_TITLE_1: 'Korea Clinic Daily',
+  HEO_LOGO_TITLE_2: '韓國皮膚科日報',
+
+  // 版面开关
+  HEO_HERO_NOTICE_PANEL: true, // 公告条改放在英雄区右侧面板（不再显示在英雄区上方）
+  HEO_CATEGORY_BAR: false, // 文章列表上方的分类栏
+  HEO_INFO_CARD_SIDEBAR: false, // 右侧栏个人资料卡
+
   HEO_SITE_CREATE_TIME: '2026-11-01', // 建站日期，用于计算网站运行的第几天
 
   // 首页顶部通知条滚动内容，如不需要可以留空 []

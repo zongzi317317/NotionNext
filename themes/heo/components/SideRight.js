@@ -1,4 +1,6 @@
 import Live2D from '@/components/Live2D'
+import { siteConfig } from '@/lib/config'
+import CONFIG from '../config'
 import dynamic from 'next/dynamic'
 import { AnalyticsCard } from './AnalyticsCard'
 import Card from './Card'
@@ -34,7 +36,9 @@ export default function SideRight(props) {
 
   return (
     <div id='sideRight' className='hidden xl:block w-72 space-y-4 h-full'>
-      <InfoCard {...props} className='w-72 wow fadeInUp' />
+      {siteConfig('HEO_INFO_CARD_SIDEBAR', true, CONFIG) && (
+        <InfoCard {...props} className='w-72 wow fadeInUp' />
+      )}
 
       <div className='sticky top-20 space-y-4'>
         {/* 文章页显示目录（上锁文章不显示） */}

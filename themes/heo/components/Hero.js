@@ -228,6 +228,11 @@ function TopGroup(props) {
   // 获取置顶推荐文章
   const topPosts = getTopPosts({ latestPosts, allNavPages })
 
+  // 英雄区右侧改为显示公告面板
+  if (siteConfig('HEO_HERO_NOTICE_PANEL', false, CONFIG)) {
+    return <NoticePanel latestPosts={latestPosts} />
+  }
+
   return (
     <div
       id='hero-right-wrapper'
@@ -417,3 +422,54 @@ function TodayCard({ cRef, siteInfo }) {
 }
 
 export default Hero
+
+/**
+ * 英雄区右侧公告面板：公告条内容 + 最新文章
+ */
+function NoticePanel({ latestPosts }) {
+  const { locale } = useGlobal()
+  let notices = siteConfig('HEO_NOTICE_BAR', null, CONFIG)
+  if (typeof notices === 'string') {
+    try {
+      notices = JSON.parse(notices)
+    } catch (e) {
+      notices = []
+    }
+  }
+  const posts = (latestPosts || []).slice(0, 4)
+  return (
+    <div
+      id='hero-right-wrapper'
+      className='hidden md:flex flex-1 w-full flex-col xl:h-[342px] rounded-xl border dark:border-gray-700 bg-[var(--heo-color-card)] dark:bg-[var(--heo-color-card-dark)] dark:text-white p-6 overflow-hidden'>
+      <div className='flex items-center font-bold text-lg mb-3'>
+        <i className='fas fa-bullhorn mr-2 text-[var(--heo-color-primary)] dark:text-[var(--heo-color-accent)]' />
+        {locale.COMMON.ANNOUNCEMENT || '公告'}
+      </div>
+      <div className='space-y-2 mb-4'>
+        {notices?.map((n, i) => (
+          <SmartLink
+            key={i}
+            href={n?.url || '/'}
+            className='flex items-center justify-between rounded-lg px-4 py-2 bg-[var(--heo-color-card-muted)] dark:bg-gray-800 hover:text-[var(--heo-color-primary)] dark:hover:text-[var(--heo-color-accent)] duration-200'>
+            <span className='truncate'>{n?.title}</span>
+            <ArrowSmallRight className='w-4 h-4 shrink-0 ml-2' />
+          </SmartLink>
+        ))}
+      </div>
+      <div className='font-bold mb-2 text-sm text-gray-500 dark:text-gray-400'>
+        {locale.COMMON.LATEST_POSTS}
+      </div>
+      <div className='flex-1 space-y-1 overflow-hidden'>
+        {posts.map(p => (
+          <SmartLink
+            key={p?.id}
+            href={`${siteConfig('SUB_PATH', '')}/${p?.slug}`}
+            className='flex justify-between items-center py-1 hover:text-[var(--heo-color-primary)] dark:hover:text-[var(--heo-color-accent)] duration-200'>
+            <span className='truncate mr-3'>{p?.title}</span>
+            <span className='text-xs text-gray-400 shrink-0'>{p?.publishDay}</span>
+          </SmartLink>
+        ))}
+      </div>
+    </div>
+  )
+}
