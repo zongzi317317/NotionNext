@@ -155,7 +155,7 @@ const Header = props => {
             ${fixedNav ? 'fixed' : 'relative bg-transparent'} 
             ${textWhite ? 'text-white ' : 'text-black dark:text-white'}  
             ${navBgWhite ? 'bg-[var(--heo-color-card)] dark:bg-[var(--heo-color-bg-dark)] shadow' : 'bg-transparent'}`}>
-        <div className='flex h-full mx-auto justify-between items-center max-w-[86rem] px-6'>
+        <div className='flex h-full mx-auto justify-between items-center gap-2 max-w-[86rem] px-6'>
           {/* 左侧logo */}
           <Logo {...props} />
 
@@ -177,7 +177,7 @@ const Header = props => {
           </div>
 
           {/* 右侧固定 */}
-          <div className='flex flex-shrink-0 justify-end items-center w-48'>
+          <div className='flex flex-shrink-0 justify-end items-center w-auto lg:w-48'>
             <LangSwitch localePaths={props?.localePaths} />
             <SearchButton {...props} />
             <ReadingProgress />

@@ -31,7 +31,7 @@ export default function LangSwitch({ localePaths, className = '' }) {
           hrefLang={loc}
           title={labels[loc] || loc}
           className='text-sm font-semibold px-2 h-8 flex justify-center items-center rounded-full hover:bg-black hover:bg-opacity-10 duration-200 transition-all whitespace-nowrap'>
-          <i className='fa-solid fa-globe mr-1' />
+          <i className='fa-solid fa-globe mr-1 hidden sm:inline' />
           {labels[loc] || loc}
         </Link>
       ))}
