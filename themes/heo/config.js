@@ -41,6 +41,24 @@ const CONFIG = {
   ],
   HEO_NOTICE_BAR_INTERVAL: 3000, // 多条通知的切换间隔，单位毫秒；非正数或无效值回退为 3000
 
+  // 首頁「合作醫院」Logo 輪播（英雄區下方、文章列表上方）。留空 [] 則不顯示
+  // logo 放在 public/images/clients/；沒有 logo 的醫院可以不填 logo，會只顯示名稱
+  // name 用於繁中頁，nameEn 用於 /en 頁；alt 為圖片替代文字（SEO）
+  HEO_PARTNER_ENABLE: true,
+  HEO_PARTNER_TITLE: '合作醫院', // 英文頁標題在 conf/i18n.config.js 設定
+  HEO_PARTNER_SPEED: 40, // 輪播跑完一圈的秒數，越大越慢
+  HEO_PARTNER_CLINICS: [
+    { name: '吳微儷珠皮膚科 · 弘大', nameEn: 'OhVelyJoo Clinic · Hongdae', alt: '오블리주의원 OhVelyJoo Clinic logo', logo: '/images/clients/ohvelyjoo.webp' },
+    { name: 'CELLIDAY 셀리데이의원', nameEn: 'CELLIDAY Clinic', alt: '셀리데이의원 CELLIDAY Clinic logo', logo: '/images/clients/celliday.webp' },
+    { name: 'velyB 블리비의원', nameEn: 'velyB Clinic', alt: '블리비의원 velyB Clinic logo', logo: '/images/clients/velyb.webp' },
+    { name: 'TriompheDr. 트리옹프닥터의원', nameEn: 'TriompheDr. Clinic', alt: '트리옹프닥터의원 TriompheDr. Clinic logo', logo: '/images/clients/triomphe-dr.webp' },
+    { name: 'GLOW 광피부과 · 清潭', nameEn: 'Glow Dermatology · Cheongdam', alt: '광피부과의원 청담 Glow Dermatology logo', logo: '/images/clients/glow-derm.webp' },
+    { name: 'Beautystone 뷰티스톤 · 合井', nameEn: 'Beautystone Clinic · Hapjeong', alt: '뷰티스톤의원 합정점 Beautystone Clinic logo', logo: '/images/clients/beautystone.svg' },
+    { name: 'STON 스톤의원 · 明洞', nameEn: 'STON Clinic · Myeongdong', alt: '스톤의원 명동점 STON Clinic logo', logo: '/images/clients/ston.svg' },
+    { name: 'DIA CLINIC 다이아의원', nameEn: 'DIA Clinic', alt: '다이아의원 DIA Clinic logo', logo: '/images/clients/dia.webp' },
+    { name: 'ARTE 아르떼의원', nameEn: 'Arte Clinic', alt: '아르떼의원 Arte Clinic logo', logo: '/images/clients/arte.webp' }
+  ],
+
   // 英雄区左右侧组件颠倒位置
   HEO_HERO_REVERSE: false,
   // 博客主体区左右侧组件颠倒位置

@@ -33,6 +33,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import LatestPostsGroup from './components/LatestPostsGroup'
+import PartnerClinics from './components/PartnerClinics'
 import { NoticeBar } from './components/NoticeBar'
 import PostAdjacent from './components/PostAdjacent'
 import PostCopyright from './components/PostCopyright'
@@ -151,6 +152,8 @@ const LayoutIndex = props => {
     <div id='post-outer-wrapper' className='px-5 md:px-0'>
       {/* 文章分类条 */}
       {siteConfig('HEO_CATEGORY_BAR', true, CONFIG) && <CategoryBar {...props} />}
+      {/* 合作醫院 Logo 輪播 */}
+      <PartnerClinics />
       {siteConfig('POST_LIST_STYLE') === 'page' ? (
         <BlogPostListPage {...props} />
       ) : (
