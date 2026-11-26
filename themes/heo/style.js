@@ -42,10 +42,13 @@ const Style = () => {
         --heo-color-bg: ${bgColor};
         --heo-color-bg-dark: ${bgDarkColor};
         --heo-color-card: #ffffff;
-        --heo-color-card-dark: #111827;
+        --heo-color-card-dark: #161c2a;
         --heo-color-card-muted: #f1f3f8;
-        --heo-color-border: #0284c7;
-        --heo-color-border-dark: #38bdf8;
+        --heo-color-card-muted-dark: rgba(255, 255, 255, 0.07);
+        --heo-color-border: rgba(15, 23, 42, 0.12);
+        --heo-color-border-dark: rgba(255, 255, 255, 0.14);
+        --heo-color-border-hover: rgba(15, 23, 42, 0.28);
+        --heo-color-border-hover-dark: rgba(255, 255, 255, 0.32);
         --heo-color-text-light: #000000;
         --heo-color-text-secondary-light: #4b5563;
         --heo-color-text-dark: #f3f4f6;
@@ -133,6 +136,19 @@ const Style = () => {
       #theme-heo.dark #notion-article .notion-external-subtitle,
       #theme-heo.dark #notion-article .notion-external-block-desc {
         color: var(--heo-color-text-secondary-dark) !important;
+      }
+
+      /* 玻璃質感卡片：卡片內的淺色列（公告、標籤數字）用半透明白，懸停時邊框稍微變亮 */
+      .dark #theme-heo [class*='bg-[var(--heo-color-card-muted)]'] {
+        background-color: var(--heo-color-card-muted-dark);
+      }
+
+      #theme-heo [class*='hover:border-[var(--heo-color-border)]']:hover {
+        border-color: var(--heo-color-border-hover);
+      }
+
+      .dark #theme-heo [class*='hover:border-[var(--heo-color-border-dark)]']:hover {
+        border-color: var(--heo-color-border-hover-dark);
       }
 
       body {
