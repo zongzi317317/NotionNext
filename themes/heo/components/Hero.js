@@ -130,32 +130,24 @@ function TagsGroupBar() {
     <div className='tags-group-all flex -rotate-[30deg] h-full'>
       <div className='tags-group-wrapper flex flex-nowrap absolute top-16'>
         {groupIcons?.map((g, index) => {
+          // fit: 'cover'：圖片本身就是完整的方塊圖示（含底色），鋪滿整格
+          const cover = g.fit === 'cover'
           return (
             <div key={index} className='tags-group-icon-pair ml-6 select-none'>
-              <div
-                style={{ background: g.color_1 }}
-                className={
-                  'tags-group-icon w-28 h-28 rounded-3xl flex items-center justify-center text-white text-lg font-bold shadow-md'
-                }>
-                <LazyImage
-                  priority={true}
-                  src={g.img_1}
-                  title={g.title_1}
-                  className='w-2/3 hidden xl:block'
-                />
-              </div>
-              <div
-                style={{ background: g.color_2 }}
-                className={
-                  'tags-group-icon  mt-5 w-28 h-28 rounded-3xl flex items-center justify-center text-white text-lg font-bold shadow-md'
-                }>
-                <LazyImage
-                  priority={true}
-                  src={g.img_2}
-                  title={g.title_2}
-                  className='w-2/3 hidden xl:block'
-                />
-              </div>
+              {[1, 2].map(n => (
+                <div
+                  key={n}
+                  style={{ background: g[`color_${n}`] }}
+                  className={`tags-group-icon ${n === 2 ? 'mt-5' : ''} w-28 h-28 rounded-3xl overflow-hidden flex items-center justify-center text-white text-lg font-bold shadow-md`}>
+                  <LazyImage
+                    priority={true}
+                    src={g[`img_${n}`]}
+                    title={g[`title_${n}`]}
+                    alt={g[`title_${n}`]}
+                    className={`${cover ? 'w-full h-full object-cover' : 'w-2/3'} hidden xl:block`}
+                  />
+                </div>
+              ))}
             </div>
           )
         })}
