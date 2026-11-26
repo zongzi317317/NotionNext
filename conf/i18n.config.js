@@ -42,7 +42,6 @@ module.exports = {
       HEO_HERO_TITLE_4: 'Latest posts',
       HEO_HERO_TITLE_5: 'Korea Clinic Daily',
       HEO_HERO_COVER_TITLE: 'Random read',
-      HEO_PARTNER_TITLE: 'Partner Clinics',
       // 英文文章的分類請用這三個英文名稱（Notion category 欄位中的選項）
       HEO_HERO_CATEGORY_1: { title: 'Clinic Picks', url: '/category/Clinic Picks' },
       HEO_HERO_CATEGORY_2: { title: 'Aesthetics Guide', url: '/category/Aesthetics Guide' },
