@@ -90,63 +90,71 @@ const CONFIG = {
   HEO_INFO_CARD_URL3: '/about',
   HEO_INFO_CARD_TEXT3: '了解更多',
 
-  // 用户技能图标
+  // 英雄區「隨便逛逛」卡片裡斜向滾動的圖示：合作醫院 Logo（正方形圖，底色已做進圖片，放在 public/images/clients/）
+  // 每組上下兩個；fit: 'cover' 表示圖片鋪滿整個圓角方塊。增減醫院時，把新圖做成 240×240 正方形放進同一資料夾即可
   HEO_GROUP_ICONS: [
     {
-      title_1: 'AfterEffect',
-      img_1: '/images/heo/20239df3f66615b532ce571eac6d14ff21cf072602.webp',
-      color_1: '#989bf8',
-      title_2: 'Sketch',
-      img_2: '/images/heo/2023e0ded7b724a39f12d59c3dc8fbdc7cbe074202.webp',
-      color_2: '#ffffff'
+      title_1: '오블리주의원 OhVelyJoo Clinic（弘大）',
+      img_1: '/images/clients/icon-ohvelyjoo.webp',
+      title_2: '뷰티스톤의원 합정점 Beautystone Clinic',
+      img_2: '/images/clients/icon-beautystone.webp',
+      fit: 'cover'
     },
     {
-      title_1: 'Docker',
-      img_1: '/images/heo/20231108a540b2862d26f8850172e4ea58ed075102.webp',
-      color_1: '#57b6e6',
-      title_2: 'Photoshop',
-      img_2: '/images/heo/2023e4058a91608ea41751c4f102b131f267075902.webp',
-      color_2: '#4082c3'
+      title_1: '셀리데이의원 CELLIDAY Clinic',
+      img_1: '/images/clients/icon-celliday.webp',
+      title_2: '스톤의원 명동점 STON Clinic',
+      img_2: '/images/clients/icon-ston.webp',
+      fit: 'cover'
     },
     {
-      title_1: 'FinalCutPro',
-      img_1: '/images/heo/20233e777652412247dd57fd9b48cf997c01070702.webp',
-      color_1: '#ffffff',
-      title_2: 'Python',
-      img_2: '/images/heo/20235c0731cd4c0c95fc136a8db961fdf963071502.webp',
-      color_2: '#ffffff'
+      title_1: '블리비의원 velyB Clinic',
+      img_1: '/images/clients/icon-velyb.webp',
+      title_2: '다이아의원 DIA Clinic',
+      img_2: '/images/clients/icon-dia.webp',
+      fit: 'cover'
     },
     {
-      title_1: 'Swift',
-      img_1: '/images/heo/202328bbee0b314297917b327df4a704db5c072402.webp',
-      color_1: '#eb6840',
-      title_2: 'Principle',
-      img_2: '/images/heo/2023f76570d2770c8e84801f7e107cd911b5073202.webp',
-      color_2: '#8f55ba'
+      title_1: '트리옹프닥터의원 TriompheDr. Clinic',
+      img_1: '/images/clients/icon-triomphe-dr.webp',
+      title_2: '아르떼의원 Arte Clinic',
+      img_2: '/images/clients/icon-arte.webp',
+      fit: 'cover'
     },
     {
-      title_1: 'illustrator',
-      img_1: '/images/heo/20237359d71b45ab77829cee5972e36f8c30073902.webp',
-      color_1: '#f29e39',
-      title_2: 'CSS3',
-      img_2: '/images/heo/20237c548846044a20dad68a13c0f0e1502f074602.webp',
-      color_2: '#2c51db'
+      title_1: '광피부과의원 청담 Glow Dermatology',
+      img_1: '/images/clients/icon-glow-derm.webp',
+      title_2: '오블리주의원 OhVelyJoo Clinic（弘大）',
+      img_2: '/images/clients/icon-ohvelyjoo.webp',
+      fit: 'cover'
     },
     {
-      title_1: 'JS',
-      img_1: '/images/heo/2023786e7fc488f453d5fb2be760c96185c0075502.webp',
-      color_1: '#f7cb4f',
-      title_2: 'HTML',
-      img_2: '/images/heo/202372b4d760fd8a497d442140c295655426070302.webp',
-      color_2: '#e9572b'
+      title_1: '뷰티스톤의원 합정점 Beautystone Clinic',
+      img_1: '/images/clients/icon-beautystone.webp',
+      title_2: '셀리데이의원 CELLIDAY Clinic',
+      img_2: '/images/clients/icon-celliday.webp',
+      fit: 'cover'
     },
     {
-      title_1: 'Git',
-      img_1: '/images/heo/2023ffa5707c4e25b6beb3e6a3d286ede4c6071102.webp',
-      color_1: '#df5b40',
-      title_2: 'Rhino',
-      img_2: '/images/heo/20231ca53fa0b09a3ff1df89acd7515e9516173302.webp',
-      color_2: '#1f1f1f'
+      title_1: '스톤의원 명동점 STON Clinic',
+      img_1: '/images/clients/icon-ston.webp',
+      title_2: '블리비의원 velyB Clinic',
+      img_2: '/images/clients/icon-velyb.webp',
+      fit: 'cover'
+    },
+    {
+      title_1: '다이아의원 DIA Clinic',
+      img_1: '/images/clients/icon-dia.webp',
+      title_2: '트리옹프닥터의원 TriompheDr. Clinic',
+      img_2: '/images/clients/icon-triomphe-dr.webp',
+      fit: 'cover'
+    },
+    {
+      title_1: '아르떼의원 Arte Clinic',
+      img_1: '/images/clients/icon-arte.webp',
+      title_2: '광피부과의원 청담 Glow Dermatology',
+      img_2: '/images/clients/icon-glow-derm.webp',
+      fit: 'cover'
     }
   ],
 
