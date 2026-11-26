@@ -13,10 +13,12 @@ const CONFIG = {
   HEO_COLOR_BG: '#f1f5f9',
   HEO_COLOR_BG_DARK: '#0b1120',
   HEO_COLOR_CARD: '#ffffff',
-  HEO_COLOR_CARD_DARK: '#111827',
+  // 深色模式卡片：玻璃質感（半透明白疊在 #0b1120 頁面底色上的實色等值，下拉選單也不會透出底下內容）
+  HEO_COLOR_CARD_DARK: '#161c2a',
   HEO_COLOR_CARD_MUTED: '#f1f3f8',
-  HEO_COLOR_BORDER: '#0284c7',
-  HEO_COLOR_BORDER_DARK: '#38bdf8',
+  // 卡片邊框：淡淡的半透明線，不再用亮藍色
+  HEO_COLOR_BORDER: 'rgba(15, 23, 42, 0.12)',
+  HEO_COLOR_BORDER_DARK: 'rgba(255, 255, 255, 0.14)',
   HEO_COLOR_TEXT: '#111827',
   HEO_COLOR_TEXT_SECONDARY: '#4b5563',
 
