@@ -17,6 +17,8 @@ import CONFIG from '../config'
  */
 const Hero = props => {
   const HEO_HERO_REVERSE = siteConfig('HEO_HERO_REVERSE', false, CONFIG)
+  // 公告面板只在 xl 以上显示；小屏时左侧组占满宽度，不留右侧间距
+  const noticePanel = siteConfig('HEO_HERO_NOTICE_PANEL', false, CONFIG)
   return (
     <div
       id='hero-wrapper'
@@ -27,10 +29,10 @@ const Hero = props => {
         className={`${HEO_HERO_REVERSE ? 'xl:flex-row-reverse' : ''}
            recent-post-top rounded-[12px] 2xl:px-5 recent-top-post-group max-w-[86rem] overflow-x-scroll w-full mx-auto flex-row flex-nowrap flex relative`}>
         {/* 左侧banner组 */}
-        <BannerGroup {...props} />
+        <BannerGroup {...props} noticePanel={noticePanel} />
 
         {/* 中间留白 */}
-        <div className='px-1.5 h-full'></div>
+        <div className={`${noticePanel ? 'hidden xl:block' : ''} px-1.5 h-full`}></div>
 
         {/* 右侧置顶文章组 */}
         <TopGroup {...props} />
@@ -48,7 +50,7 @@ function BannerGroup(props) {
     // 左侧英雄区
     <div
       id='bannerGroup'
-      className='flex flex-col justify-between flex-1 mr-2 max-w-[42rem]'>
+      className={`flex flex-col justify-between flex-1 ${props.noticePanel ? 'xl:mr-2 xl:max-w-[42rem]' : 'mr-2 max-w-[42rem]'}`}>
       {/* 动图 */}
       <Banner {...props} />
       {/* 导航分类 */}
@@ -175,13 +177,13 @@ function GroupMenu() {
   const title_3 = siteConfig('HEO_HERO_CATEGORY_3', {}, CONFIG)?.title || ''
 
   return (
-    <div className='h-[165px] select-none xl:h-20 flex flex-col justify-between xl:space-y-0 xl:flex-row w-28 lg:w-48 xl:w-full xl:flex-nowrap xl:space-x-3'>
+    <div className='select-none w-full grid grid-cols-3 gap-2 sm:gap-3 xl:h-20 xl:flex xl:flex-row xl:flex-nowrap xl:gap-0 xl:space-x-3'>
       <SmartLink
         href={url_1}
-        className='group relative overflow-hidden bg-[var(--heo-color-primary)] flex h-20 justify-start items-center text-[var(--heo-color-primary-text)] rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
-        <div className='font-bold lg:text-lg  pl-5 relative -mt-2'>
+        className='group relative overflow-hidden bg-[var(--heo-color-primary)] flex h-14 sm:h-16 xl:h-20 justify-center xl:justify-start items-center text-[var(--heo-color-primary-text)] rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
+        <div className='font-bold text-[13px] min-[360px]:text-sm sm:text-base lg:text-lg whitespace-nowrap xl:pl-5 relative -mt-2'>
           {title_1}
-          <span className='absolute -bottom-0.5 left-5 w-5 h-0.5 bg-white rounded-full'></span>
+          <span style={{ backgroundColor: '#fff' }} className='absolute -bottom-0.5 left-1/2 -translate-x-1/2 xl:left-5 xl:translate-x-0 w-5 h-0.5 rounded-full'></span>
         </div>
         <div className='hidden lg:block absolute right-6  duration-700 ease-in-out transition-all scale-[2] translate-y-6 rotate-12 opacity-20 group-hover:opacity-80 group-hover:scale-100 group-hover:translate-y-0 group-hover:rotate-0'>
           <i className='fa-solid fa-star text-4xl'></i>
@@ -190,25 +192,25 @@ function GroupMenu() {
       <SmartLink
         href={url_2}
         style={{ backgroundImage: 'linear-gradient(to right, #ef4444, #f59e0b)' }}
-        className='group relative overflow-hidden flex h-20 justify-start items-center text-white rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
-        <div className='font-bold lg:text-lg pl-5 relative -mt-2'>
+        className='group relative overflow-hidden flex h-14 sm:h-16 xl:h-20 justify-center xl:justify-start items-center text-white rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
+        <div className='font-bold text-[13px] min-[360px]:text-sm sm:text-base lg:text-lg whitespace-nowrap xl:pl-5 relative -mt-2'>
           {title_2}
-          <span className='absolute -bottom-0.5 left-5 w-5 h-0.5 bg-white rounded-full'></span>
+          <span style={{ backgroundColor: '#fff' }} className='absolute -bottom-0.5 left-1/2 -translate-x-1/2 xl:left-5 xl:translate-x-0 w-5 h-0.5 rounded-full'></span>
         </div>
         <div className='hidden lg:block absolute right-6  duration-700 ease-in-out transition-all scale-[2] translate-y-6 rotate-12 opacity-20 group-hover:opacity-80 group-hover:scale-100 group-hover:translate-y-0 group-hover:rotate-0'>
           <i className='fa-solid fa-fire-flame-curved text-4xl'></i>
         </div>
       </SmartLink>
-      {/* 第三个标签在小屏上不显示 */}
+      {/* 小屏三个标签一排，宽屏恢复原样 */}
       <SmartLink
         href={url_3}
         style={{ backgroundImage: 'linear-gradient(to right, #14b8a6, #06b6d4)' }}
-        className='group relative overflow-hidden hidden h-20 xl:flex justify-start items-center text-white rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
-        <div className='font-bold text-lg pl-5 relative -mt-2'>
+        className='group relative overflow-hidden flex h-14 sm:h-16 xl:h-20 justify-center xl:justify-start items-center text-white rounded-xl xl:hover:w-1/2 xl:w-1/3 transition-all duration-500 ease-in'>
+        <div className='font-bold text-[13px] min-[360px]:text-sm sm:text-base lg:text-lg whitespace-nowrap xl:pl-5 relative -mt-2'>
           {title_3}
-          <span className='absolute -bottom-0.5 left-5 w-5 h-0.5 bg-white rounded-full'></span>
+          <span style={{ backgroundColor: '#fff' }} className='absolute -bottom-0.5 left-1/2 -translate-x-1/2 xl:left-5 xl:translate-x-0 w-5 h-0.5 rounded-full'></span>
         </div>
-        <div className='absolute right-6 duration-700 ease-in-out transition-all scale-[2] translate-y-6 rotate-12 opacity-20 group-hover:opacity-80 group-hover:scale-100 group-hover:translate-y-0 group-hover:rotate-0'>
+        <div className='hidden lg:block absolute right-6 duration-700 ease-in-out transition-all scale-[2] translate-y-6 rotate-12 opacity-20 group-hover:opacity-80 group-hover:scale-100 group-hover:translate-y-0 group-hover:rotate-0'>
           <i className='fa-solid fa-book-bookmark text-4xl '></i>
         </div>
       </SmartLink>
