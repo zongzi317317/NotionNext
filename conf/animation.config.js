@@ -32,5 +32,5 @@ module.exports = {
   // ANIMATE.css 动画
   ANIMATE_CSS_URL:
     process.env.NEXT_PUBLIC_ANIMATE_CSS_URL ||
-    'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css' // 动画CDN
+    '/vendor/animate.css/animate.min.css' // 动画CSS（自托管 4.1.1，避免境外 CDN 在大陆变慢）
 }
