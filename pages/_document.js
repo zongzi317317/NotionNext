@@ -47,9 +47,6 @@ class MyDocument extends Document {
     return (
       <Html lang={this.props.locale || BLOG.LANG}>
         <Head>
-          <link rel='preconnect' href='https://images.unsplash.com' />
-          <link rel='dns-prefetch' href='//images.unsplash.com' />
-
           {/* 预加载字体 */}
           {BLOG.FONT_AWESOME && (
             <>
